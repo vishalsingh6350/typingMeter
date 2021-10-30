@@ -1,21 +1,42 @@
-import {useState,useEffect} from "react";
+import { useState, useRef } from "react";
 import Navbar from "./components/Navbar";
-import MainText from "./components/MainText";
-import InputText from "./components/InputText";
 import { IndexContext } from "./context/IndexContext";
-import './index.css'
+import PlayArea from "./components/PlayArea";
+import StartScreen from "./components/StartScreen";
+import "./index.css";
+import EndScreen from "./components/EndScreen";
 function App() {
-  const [index, setindex] = useState(0)
-  const [data, setdata] = useState()
-  return (
-    <div className="App">
-      <Navbar />
-      <IndexContext.Provider value={{index,setindex,data,setdata}}>
-        <MainText/>
-        <InputText/>
-      </IndexContext.Provider>
-    </div>
-  );
+    const [index, setindex] = useState(0);
+    const [data, setdata] = useState();
+    const [wpm, setwpm] = useState();
+    const [completed, setCompleted] = useState(false);
+    const [started, setStarted] = useState(false);
+    const textArea = useRef();
+    const textRef = useRef();
+
+    return (
+        <div className="App">
+            <IndexContext.Provider
+                value={{
+                    index,
+                    setindex,
+                    data,
+                    setdata,
+                    textArea,
+                    textRef,
+                    wpm,
+                    setwpm,
+                    completed,
+                    setCompleted,
+                    started,
+                    setStarted
+                }}
+            >
+                <Navbar />
+                {started ? !completed?<PlayArea/>:<EndScreen/> : <StartScreen/>}
+            </IndexContext.Provider>
+        </div>
+    );
 }
 
 export default App;
