@@ -2,8 +2,8 @@ import Airtable, { Record } from "airtable";
 import { useContext, useEffect, useRef, useState } from "react";
 import { IndexContext } from "../context/IndexContext";
 const MainText = () => {
-    const base = new Airtable({ apiKey: "keykqP9VIjjfOZfTR" }).base(
-        "app6K7Opeu8lsGZ7S"
+    const base = new Airtable({ apiKey: "YOUR_API_KEY" }).base(
+        "YOUR_BASE_KEY"
     );
     const { textRef, textArea, setwpm, setCompleted } =
         useContext(IndexContext);
